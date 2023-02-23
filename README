@@ -1,0 +1,21 @@
+# Caffeex
+
+## Projeto avaliativo
+
+Após clonar o projeto, você deve ir até o arquivo .env, e alterar as informações com os dados de coneção ao seu banco de dados.
+
+--
+
+Para rodar o programa, usando o terminar, vá até a pasta onde você clonou seu projeto, a mesma que contém o arquivo manage.py e execute o comando:
+
+python3 manage.py runserver
+
+Assim, o programa irá iniciar.
+
+--
+
+Para criar um usuário administrador, basta executar em seu terminal o comando:
+
+python3 manage.py createsuperuser
+
+e seguir o passo a passo dado pelo mesmo.
