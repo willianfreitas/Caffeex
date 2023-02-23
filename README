@@ -19,3 +19,48 @@ Para criar um usuário administrador, basta executar em seu terminal o comando:
 python3 manage.py createsuperuser
 
 e seguir o passo a passo dado pelo mesmo.
+
+--
+
+Após criar o seu usuario administrador, vá para a URL:
+
+127.0.0.1:8000/api/token
+
+Nela,você deve passar como parametros via BODY o seguinte JSON:
+
+{ 
+    "username":"SEU USUARIO ADM",
+    "password":"SENHA DO SEU USUARIO ADM"
+}
+
+Esta URL irá lhe retornar seu token de acesso, através da tag ACCESS.
+
+--
+
+Agora com seu token em mãos, é possível efetuar tanto o cadastro de uma categoria, quanto o cadastro de um produto.
+
+Para cadastrar uma categoria:
+
+Acesse a URL 127.0.0.1:8000/api/cad_categoria/;
+Repasse através do HEADER a variável AUTHORIZATION, no seguinte formato: Bearer <TOKEN DE ACESSO GERADO>
+E via body o seguinte JSON: {
+    "nome":"NOME DA CATEGORIA"
+    "descricao":"DESCRICAO DA CATEGORIA"
+}
+
+Para cadastrar um produto:
+
+Repita o processo anterior no HEADER, para passar o token de autorização.
+E via body o seguinte JSON: {
+    "categoria":ID DA CATEGORIA,
+    "nome":"NOME DO PRODUTO",
+    "preco":PRECO DO PRODUTO
+}
+
+--
+
+Já um usuário não logado, consegue acessar as informações salvas no banco através de 3 endpoints:
+
+127.0.0.1:8000/api/categorias/ -> Retorna todas as categorias cadastradas
+127.0.0.1:8000/api/categorias/ID_DA_CATEGORIA/produtos -> Retorna todos os produtos de uma categoria específica
+127.0.0.1:8000/api/produtos -> Possui dois parametros: Preço e Operador. Através deles, é possível filtrar todos os produtos cadastrados que sejam maior, maior igual, igual, menor igual e menor a um determinado preço. Caso esses parametros não sejam passados, retorna todos os produtos cadastrados em todas as categorias.
